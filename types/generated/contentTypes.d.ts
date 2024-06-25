@@ -362,6 +362,73 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiLandLand extends Schema.CollectionType {
+  collectionName: 'lands';
+  info: {
+    singularName: 'land';
+    pluralName: 'lands';
+    displayName: 'Land';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    landName: Attribute.String;
+    schedules: Attribute.Relation<
+      'api::land.land',
+      'oneToMany',
+      'api::schedule.schedule'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::land.land', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::land.land', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiScheduleSchedule extends Schema.CollectionType {
+  collectionName: 'schedules';
+  info: {
+    singularName: 'schedule';
+    pluralName: 'schedules';
+    displayName: 'Schedule';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titile: Attribute.String;
+    class: Attribute.String;
+    startClass: Attribute.Time;
+    endClass: Attribute.Time;
+    date: Attribute.Date;
+    land: Attribute.Relation<
+      'api::schedule.schedule',
+      'manyToOne',
+      'api::land.land'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::schedule.schedule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::schedule.schedule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -788,105 +855,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiLandLand extends Schema.CollectionType {
-  collectionName: 'lands';
-  info: {
-    singularName: 'land';
-    pluralName: 'lands';
-    displayName: 'Land';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    landName: Attribute.String;
-    schedules: Attribute.Relation<
-      'api::land.land',
-      'oneToMany',
-      'api::schedule.schedule'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::land.land', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::land.land', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPlacePlace extends Schema.SingleType {
-  collectionName: 'places';
-  info: {
-    singularName: 'place';
-    pluralName: 'places';
-    displayName: 'Place';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    placeName: Attribute.String;
-    placeDescription: Attribute.String;
-    image: Attribute.Media<'images'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::place.place',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::place.place',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiScheduleSchedule extends Schema.CollectionType {
-  collectionName: 'schedules';
-  info: {
-    singularName: 'schedule';
-    pluralName: 'schedules';
-    displayName: 'Schedule';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    titile: Attribute.String;
-    class: Attribute.String;
-    startClass: Attribute.Time;
-    endClass: Attribute.Time;
-    date: Attribute.Date;
-    land: Attribute.Relation<
-      'api::schedule.schedule',
-      'manyToOne',
-      'api::land.land'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::schedule.schedule',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::schedule.schedule',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -897,6 +865,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::land.land': ApiLandLand;
+      'api::schedule.schedule': ApiScheduleSchedule;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -905,9 +875,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::land.land': ApiLandLand;
-      'api::place.place': ApiPlacePlace;
-      'api::schedule.schedule': ApiScheduleSchedule;
     }
   }
 }
