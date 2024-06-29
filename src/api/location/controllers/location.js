@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * place controller
+ * location controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::place.place');
+module.exports = createCoreController('api::location.location');

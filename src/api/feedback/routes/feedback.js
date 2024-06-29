@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * place router
+ * feedback router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::place.place');
+module.exports = createCoreRouter('api::feedback.feedback');
