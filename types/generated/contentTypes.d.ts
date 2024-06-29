@@ -845,31 +845,32 @@ export interface ApiLandLand extends Schema.CollectionType {
   };
 }
 
-export interface ApiPlacePlace extends Schema.CollectionType {
-  collectionName: 'places';
+export interface ApiLocationLocation extends Schema.CollectionType {
+  collectionName: 'locations';
   info: {
-    singularName: 'place';
-    pluralName: 'places';
-    displayName: 'Place';
+    singularName: 'location';
+    pluralName: 'locations';
+    displayName: 'Location';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    placeName: Attribute.String;
-    placeDescription: Attribute.Text;
-    image: Attribute.Media<'images'>;
+    name: Attribute.String;
+    desc: Attribute.Text;
+    linkMap: Attribute.String;
+    typeOfLocation: Attribute.Enumeration<['sponsor', 'regular']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::place.place',
+      'api::location.location',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::place.place',
+      'api::location.location',
       'oneToOne',
       'admin::user'
     > &
@@ -937,7 +938,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::land.land': ApiLandLand;
-      'api::place.place': ApiPlacePlace;
+      'api::location.location': ApiLocationLocation;
       'api::schedule.schedule': ApiScheduleSchedule;
     }
   }
