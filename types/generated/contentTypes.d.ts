@@ -851,6 +851,7 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     singularName: 'location';
     pluralName: 'locations';
     displayName: 'Location';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -860,6 +861,7 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     desc: Attribute.Text;
     linkMap: Attribute.String;
     typeOfLocation: Attribute.Enumeration<['sponsor', 'regular']>;
+    image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
