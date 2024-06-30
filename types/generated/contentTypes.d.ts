@@ -892,7 +892,7 @@ export interface ApiScheduleSchedule extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    titile: Attribute.String;
+    title: Attribute.String;
     class: Attribute.String;
     startClass: Attribute.Time;
     endClass: Attribute.Time;
