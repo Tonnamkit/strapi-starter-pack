@@ -20,9 +20,8 @@ module.exports = {
     let { Server } = require("socket.io");
       let io = new Server(strapi.server.httpServer,{
         cors:{
-          origin:"http://localhost:5173",
+          origin:"*",
           methods:["GET","POST"],
-          allowedHeaders: ["my-custom-header"],
           credentials: true
         }
       }) 
@@ -32,9 +31,9 @@ module.exports = {
       io.on("connection",(socket) => {{
         console.log("A user connected: ",socket.id);
 
-        socket.on("sendFeedbacks",(newFeedback)=> {
+        socket.on("sendMessages",(newFeedback)=> {
           feedbacks.push(newFeedback)          
-          io.emit("recvFeedbacks", newFeedback)
+          io.emit("recvMessages", newFeedback)
         });
 
         socket.on("disconnected", () =>{
