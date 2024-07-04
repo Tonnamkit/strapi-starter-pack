@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * feedback controller
+ * message controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::feedback.feedback');
+module.exports = createCoreController('api::message.message');

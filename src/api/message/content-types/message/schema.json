@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "feedbacks",
+  "collectionName": "messages",
   "info": {
-    "singularName": "feedback",
-    "pluralName": "feedbacks",
-    "displayName": "Feedback"
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "Message"
   },
   "options": {
     "draftAndPublish": true

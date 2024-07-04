@@ -788,36 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiFeedbackFeedback extends Schema.CollectionType {
-  collectionName: 'feedbacks';
-  info: {
-    singularName: 'feedback';
-    pluralName: 'feedbacks';
-    displayName: 'Feedback';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    message: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::feedback.feedback',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::feedback.feedback',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiLandLand extends Schema.CollectionType {
   collectionName: 'lands';
   info: {
@@ -873,6 +843,36 @@ export interface ApiLocationLocation extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMessageMessage extends Schema.CollectionType {
+  collectionName: 'messages';
+  info: {
+    singularName: 'message';
+    pluralName: 'messages';
+    displayName: 'Message';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    message: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::message.message',
       'oneToOne',
       'admin::user'
     > &
@@ -938,9 +938,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::feedback.feedback': ApiFeedbackFeedback;
       'api::land.land': ApiLandLand;
       'api::location.location': ApiLocationLocation;
+      'api::message.message': ApiMessageMessage;
       'api::schedule.schedule': ApiScheduleSchedule;
     }
   }

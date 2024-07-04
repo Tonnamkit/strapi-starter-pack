@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * feedback router
+ * message router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::feedback.feedback');
+module.exports = createCoreRouter('api::message.message');

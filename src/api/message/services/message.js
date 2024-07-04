@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * feedback service
+ * message service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::feedback.feedback');
+module.exports = createCoreService('api::message.message');
