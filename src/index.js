@@ -32,8 +32,7 @@ module.exports = {
         console.log("A user connected: ",socket.id);
 
         socket.on("sendMessages",(newMessage)=> {
-          feedbacks.push(newMessage)
-          console.log(newMessage);          
+          feedbacks.push(newMessage)        
           io.emit("recvMessages", newMessage)
         });
 
