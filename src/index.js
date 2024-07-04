@@ -31,9 +31,10 @@ module.exports = {
       io.on("connection",(socket) => {{
         console.log("A user connected: ",socket.id);
 
-        socket.on("sendMessages",(newFeedback)=> {
-          feedbacks.push(newFeedback)          
-          io.emit("recvMessages", newFeedback)
+        socket.on("sendMessages",(newMessage)=> {
+          feedbacks.push(newMessage)
+          console.log(newMessage);          
+          io.emit("recvMessages", newMessage)
         });
 
         socket.on("disconnected", () =>{
