@@ -19,6 +19,12 @@
       "relation": "oneToMany",
       "target": "api::schedule.schedule",
       "mappedBy": "land"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "land"
     }
   }
 }

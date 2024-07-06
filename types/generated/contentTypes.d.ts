@@ -805,6 +805,11 @@ export interface ApiLandLand extends Schema.CollectionType {
       'oneToMany',
       'api::schedule.schedule'
     >;
+    messages: Attribute.Relation<
+      'api::land.land',
+      'oneToMany',
+      'api::message.message'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -856,12 +861,18 @@ export interface ApiMessageMessage extends Schema.CollectionType {
     singularName: 'message';
     pluralName: 'messages';
     displayName: 'Message';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     message: Attribute.Text;
+    land: Attribute.Relation<
+      'api::message.message',
+      'manyToOne',
+      'api::land.land'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

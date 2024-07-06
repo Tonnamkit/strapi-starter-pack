@@ -4,7 +4,8 @@
   "info": {
     "singularName": "message",
     "pluralName": "messages",
-    "displayName": "Message"
+    "displayName": "Message",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,12 @@
   "attributes": {
     "message": {
       "type": "text"
+    },
+    "land": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::land.land",
+      "inversedBy": "messages"
     }
   }
 }
