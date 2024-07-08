@@ -15,9 +15,6 @@
     "title": {
       "type": "string"
     },
-    "class": {
-      "type": "string"
-    },
     "startClass": {
       "type": "time"
     },
