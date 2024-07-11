@@ -788,6 +788,75 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiBlogBlog extends Schema.CollectionType {
+  collectionName: 'blogs';
+  info: {
+    singularName: 'blog';
+    pluralName: 'blogs';
+    displayName: 'Blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    message: Attribute.Text;
+    land: Attribute.Relation<'api::blog.blog', 'manyToOne', 'api::land.land'>;
+    comments: Attribute.Relation<
+      'api::blog.blog',
+      'oneToMany',
+      'api::blog-comment.blog-comment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBlogCommentBlogComment extends Schema.CollectionType {
+  collectionName: 'blog_comments';
+  info: {
+    singularName: 'blog-comment';
+    pluralName: 'blog-comments';
+    displayName: 'blog_comment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    comment: Attribute.Text;
+    blog: Attribute.Relation<
+      'api::blog-comment.blog-comment',
+      'manyToOne',
+      'api::blog.blog'
+    >;
+    land: Attribute.Relation<
+      'api::blog-comment.blog-comment',
+      'manyToOne',
+      'api::land.land'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blog-comment.blog-comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blog-comment.blog-comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -841,12 +910,13 @@ export interface ApiLandLand extends Schema.CollectionType {
       'oneToMany',
       'api::schedule.schedule'
     >;
-    messages: Attribute.Relation<
+    classRoom: Attribute.String;
+    blogs: Attribute.Relation<'api::land.land', 'oneToMany', 'api::blog.blog'>;
+    comments: Attribute.Relation<
       'api::land.land',
       'oneToMany',
-      'api::message.message'
+      'api::blog-comment.blog-comment'
     >;
-    classRoom: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -891,42 +961,6 @@ export interface ApiLocationLocation extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMessageMessage extends Schema.CollectionType {
-  collectionName: 'messages';
-  info: {
-    singularName: 'message';
-    pluralName: 'messages';
-    displayName: 'Message';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    message: Attribute.Text;
-    land: Attribute.Relation<
-      'api::message.message',
-      'manyToOne',
-      'api::land.land'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::message.message',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::message.message',
       'oneToOne',
       'admin::user'
     > &
@@ -991,10 +1025,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::blog.blog': ApiBlogBlog;
+      'api::blog-comment.blog-comment': ApiBlogCommentBlogComment;
       'api::category.category': ApiCategoryCategory;
       'api::land.land': ApiLandLand;
       'api::location.location': ApiLocationLocation;
-      'api::message.message': ApiMessageMessage;
       'api::schedule.schedule': ApiScheduleSchedule;
     }
   }

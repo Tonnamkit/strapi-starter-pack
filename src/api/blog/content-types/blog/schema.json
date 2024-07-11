@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "messages",
+  "collectionName": "blogs",
   "info": {
-    "singularName": "message",
-    "pluralName": "messages",
-    "displayName": "Message",
-    "description": ""
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Blog"
   },
   "options": {
     "draftAndPublish": true
@@ -19,7 +18,13 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::land.land",
-      "inversedBy": "messages"
+      "inversedBy": "blogs"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-comment.blog-comment",
+      "mappedBy": "blog"
     }
   }
 }
