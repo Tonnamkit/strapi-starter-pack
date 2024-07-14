@@ -829,15 +829,10 @@ export interface ApiBlogCommentBlogComment extends Schema.CollectionType {
   };
   attributes: {
     comment: Attribute.Text;
-    blog: Attribute.Relation<
+    topic: Attribute.Relation<
       'api::blog-comment.blog-comment',
       'manyToOne',
       'api::blog.blog'
-    >;
-    land: Attribute.Relation<
-      'api::blog-comment.blog-comment',
-      'manyToOne',
-      'api::land.land'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -912,11 +907,6 @@ export interface ApiLandLand extends Schema.CollectionType {
     >;
     classRoom: Attribute.String;
     blogs: Attribute.Relation<'api::land.land', 'oneToMany', 'api::blog.blog'>;
-    comments: Attribute.Relation<
-      'api::land.land',
-      'oneToMany',
-      'api::blog-comment.blog-comment'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

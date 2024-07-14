@@ -15,16 +15,10 @@
     "comment": {
       "type": "text"
     },
-    "blog": {
+    "topic": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::blog.blog",
-      "inversedBy": "comments"
-    },
-    "land": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::land.land",
       "inversedBy": "comments"
     }
   }
