@@ -27,14 +27,21 @@ module.exports = {
       }) 
 
       let feedbacks = [];
+      let comments = [];
 
       io.on("connection",(socket) => {{
         console.log("A user connected: ",socket.id);
 
         socket.on("sendMessages",(newMessage)=> {
+          console.log(newMessage);
           feedbacks.push(newMessage)        
           io.emit("recvMessages", newMessage)
         });
+
+        socket.on("sendComments",(newComment) =>  {
+          comments.push(newComment);
+          io.emit("recvComments",newComment);
+        })
 
         socket.on("disconnected", () =>{
           console.log("User disconnected: ", socket.id);
