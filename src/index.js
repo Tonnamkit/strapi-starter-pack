@@ -32,15 +32,23 @@ module.exports = {
       io.on("connection",(socket) => {{
         console.log("A user connected: ",socket.id);
 
+        socket.on("joinRoom", (room) => {
+          socket.join(room)
+          console.log(`User ${socket.id} joined room ${room}`);
+        })
+
         socket.on("sendMessages",(newMessage)=> {
           console.log(newMessage);
           feedbacks.push(newMessage)        
           io.emit("recvMessages", newMessage)
         });
 
+        
         socket.on("sendComments",(newComment) =>  {
           comments.push(newComment);
-          io.emit("recvComments",newComment);
+
+          const room = newComment.topic
+          io.to(room).emit("recvComments",newComment);
         })
 
         socket.on("disconnected", () =>{
