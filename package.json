@@ -21,6 +21,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
     "socket.io": "^4.7.5",
+    "strapi-provider-upload-supabase": "^1.0.0",
     "styled-components": "5.3.3"
   },
   "author": {
