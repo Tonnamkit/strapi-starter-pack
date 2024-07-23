@@ -29,6 +29,9 @@
       "relation": "manyToOne",
       "target": "api::land.land",
       "inversedBy": "schedules"
+    },
+    "slideLink": {
+      "type": "text"
     }
   }
 }

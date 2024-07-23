@@ -979,6 +979,7 @@ export interface ApiScheduleSchedule extends Schema.CollectionType {
       'manyToOne',
       'api::land.land'
     >;
+    slideLink: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
